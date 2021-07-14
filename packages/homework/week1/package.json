@@ -1,0 +1,16 @@
+{
+  "name": "week1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "sharp": "^0.28.3",
+    "vite": "^2.4.2"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.25.2"
+  }
+}

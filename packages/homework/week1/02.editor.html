@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>week1 Monaco Editor</title>
+    <style>
+      #monaco {
+        width: 1180;
+        height: 400px;
+        margin: 0 auto;
+        border: 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="monaco"></div>
+    <button id="content">获取文本</button>
+  </body>
+
+  <script type="module">
+    import * as monaco from './node_modules/monaco-editor/esm/vs/editor/editor.api.js';
+    import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
+    import 'monaco-editor/esm/vs/editor/contrib/find/findController.js';
+
+    defineTheme();
+    const monacoInstance = monaco.editor.create(document.getElementById('monaco'), {
+      value: `console.log("hello,world")`,
+      language: 'javascript'
+    });
+
+    function defineTheme() {
+      monaco.editor.defineTheme('myTheme', {
+        base: 'vs',
+        inherit: true,
+        rules: [{ background: 'EDF9FA' }]
+        // colors: {
+        //   'editor.foreground': '#000000',
+        //   'editor.background': '#EDF9FA',
+        //   'editorCursor.foreground': '#8B0000',
+        //   'editor.lineHighlightBackground': '#0000FF20',
+        //   'editorLineNumber.foreground': '#008800',
+        //   'editor.selectionBackground': '#88000030',
+        //   'editor.inactiveSelectionBackground': '#88000015'
+        // }
+      });
+      monaco.editor.setTheme('myTheme');
+    }
+    // monacoInstance.dispose();
+
+    document.querySelector('#content').addEventListener('click', function () {
+      console.log(monacoInstance.getValue());
+    });
+  </script>
+</html>
