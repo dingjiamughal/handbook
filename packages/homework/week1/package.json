@@ -11,6 +11,7 @@
     "vite": "^2.4.2"
   },
   "dependencies": {
-    "monaco-editor": "^0.25.2"
+    "monaco-editor": "^0.25.2",
+    "monaco-editor-core": "^0.25.1"
   }
 }
