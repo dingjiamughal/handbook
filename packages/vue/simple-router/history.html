@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>history-router</title>
+  </head>
+  <body>
+    <div>
+      <a href="/page1">p1</a>
+      <a href="/page2">p2</a>
+    </div>
+    <div id="route-view"></div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', load);
+      window.addEventListener('popState', popChange);
+
+      let routeView = document.getElementById('route-view');
+
+      function load() {
+        popChange();
+
+        [...document.querySelectorAll('a[href]')].forEach(aNode =>
+          aNode.addEventListener('click', function (e) {
+            e.preventDefault();
+            var href = aNode.getAttribute('href');
+            //  手动修改浏览器的地址栏
+            history.pushState(null, '', href);
+            popChange();
+          })
+        );
+      }
+
+      function popChange() {
+        switch (location.pathname) {
+          case '/page1':
+            routeView.innerHTML = 'page1';
+            return;
+          case '/page2':
+            routeView.innerHTML = 'page2';
+            return;
+          default:
+            routeView.innerHTML = 'page1';
+            return;
+        }
+      }
+    </script>
+  </body>
+</html>

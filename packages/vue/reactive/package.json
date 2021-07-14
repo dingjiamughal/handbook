@@ -1,0 +1,16 @@
+{
+  "name": "reactive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.43.0",
+    "webpack-cli": "3",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
