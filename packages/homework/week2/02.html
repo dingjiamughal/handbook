@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="module">
+      let tmpl = `<div class="newslist">
+        <div class="img" v-if="info.showImage"><img src="{{image}}"/></div>
+        <div class="date" v-if="info.showDate">{{info.name}}</div>
+        <div class="img">{{info.img}}</div>
+      </div>`;
+
+      render(tmpl, {
+        image: 'some img',
+        info: { showImage: true, showDate: false, name: 'aaa', img: 'bbb' }
+      });
+
+      function render(tpl, state) {
+        const flattenState = flattenObj(state);
+
+        // 解析 {{}}
+        tpl = tpl.replace(/\{\{(.+?)\}\}/g, (node, $1) => {
+          return flattenState[$1];
+        });
+
+        // 解析 v-if
+        tpl = tpl.replace(/v-if=["|'](.+?)["|']/g, (node, $1) => {
+          return `v-if="${flattenState[$1]}"`;
+        });
+
+        document.querySelector('#app').innerHTML = tpl;
+
+        const el = document.querySelector('#app');
+        vIfDfs(el);
+      }
+
+      // deep obj => Record<a.b.c, string>
+      function flattenObj(obj, { prevKey = '', segment = '.' } = {}) {
+        return Object.keys(obj).reduce((memo, next) => {
+          const newKey = prevKey ? prevKey + segment + next : next;
+          const value = obj[next] ? obj[next] : obj[next] === false ? false : '';
+
+          if (typeof value === 'object' && !(value instanceof Array)) {
+            memo = { ...memo, ...flattenObj(value, { prevKey: newKey }) };
+          } else {
+            memo[newKey] = value;
+          }
+
+          return memo;
+        }, {});
+      }
+
+      // 节点上有 v-if 的处理
+      function vIfDfs(el) {
+        const childNodes = el.childNodes;
+        // console.log(childNodes);
+
+        [...childNodes].forEach(node => {
+          if (node.nodeType === 1) {
+            const nodeAttrs = node.attributes;
+            [...nodeAttrs].forEach(attr => {
+              if (attr.name === 'v-if' && attr.value === 'false') {
+                node.parentNode.removeChild(node);
+              }
+            });
+          }
+
+          if (node.childNodes && node.childNodes.length) {
+            vIfDfs(node);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
