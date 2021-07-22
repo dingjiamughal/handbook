@@ -12,6 +12,7 @@ function App() {
 
   const add = num => (state.count += num);
   const minus = num => (state.count -= num);
+  const changeJob = job => (state.info.job = job);
 
   return {
     template: `<div>
@@ -19,11 +20,13 @@ function App() {
         <div>{{ info.job }}</div>
         <button onClick="add(2)">+</button>
         <button onClick="minus(1)">-</button>
+        <button onClick="changeJob('backend')">change job</button>
       </div>`,
     state,
     methods: {
       add,
-      minus
+      minus,
+      changeJob
     }
   };
 }
@@ -38,6 +41,20 @@ function renderDom(app, dom) {
 
   dom.innerHTML = template;
   bindEvent(methods);
+}
+
+export function update(statePool, key, value) {
+  const allElements = document.getElementsByTagName('*');
+
+  statePool.forEach(item => {
+    if (item.state[item.state.length - 1] === key) {
+      [...allElements].forEach(element => {
+        if (parseInt(element.dataset.v) === item.flag) {
+          element.innerHTML = value;
+        }
+      });
+    }
+  });
 }
 
 renderDom(App(), document.getElementById('app'));

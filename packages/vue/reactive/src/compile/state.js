@@ -9,34 +9,40 @@ import { randomNum } from '../utils';
  */
 
 export const statePool = [];
+
+let index = 0;
+
 export function stateFormat(template, state) {
   console.log(template, state);
 
-  const _state = {};
+  let _state = {};
+
   template = template.replace(/<.+?>\{\{(.+?)\}\}<\/.+?>/g, (node, key) => {
     const tagName = node.match(/\<(.+?)\>/)[1];
     const flag = randomNum();
 
     _state.flag = flag;
+    statePool.push(_state);
+    _state = {};
 
-    return `<${tagName} data-dom='${flag}'>{{${key}}}</${tagName}>`;
+    return `<${tagName} data-v='${flag}'>{{${key}}}</${tagName}>`;
   });
 
   console.log(template, 'template1');
 
   template = template.replace(/\{\{(.*?)\}\}/g, (node, key) => {
-    let variables = key.trim();
+    let variables = state;
     const stateArr = key.trim().split('.'); // [state, count]
 
     let i = 0;
     while (i < stateArr.length) {
-      variables = state[stateArr[i]];
+      variables = variables[stateArr[i]];
 
       i++;
     }
 
-    _state.state = stateArr;
-    statePool.push(_state);
+    statePool[index].state = stateArr;
+    index++;
 
     return variables;
   });
