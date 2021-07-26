@@ -1,4 +1,4 @@
-import { mutableHandler } from './handler';
+import { handler } from './handler';
 import { isObject } from '../utils';
 
 function createReactiveObject(target, baseHandler) {
@@ -11,5 +11,5 @@ function createReactiveObject(target, baseHandler) {
 }
 
 export function reactive(target) {
-  return createReactiveObject(target, mutableHandler);
+  return createReactiveObject(target, handler);
 }

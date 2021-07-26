@@ -37,7 +37,6 @@ export function eventFormat(template) {
  * @param {*} methods
  */
 export function bindEvent(methods) {
-  console.log(methods);
   const allElements = document.getElementsByTagName('*');
 
   eventPool.forEach(event => {
@@ -49,7 +48,6 @@ export function bindEvent(methods) {
     });
 
     if (elementWithEvent) {
-      console.log(elementWithEvent, '111');
       elementWithEvent.addEventListener(
         event.type,
         function () {

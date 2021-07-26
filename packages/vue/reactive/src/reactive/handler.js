@@ -3,7 +3,7 @@ import { update } from '..';
 import { statePool } from '../compile/state';
 import { isObject } from '../utils';
 
-export const mutableHandler = {
+export const handler = {
   get(target, key, receiver) {
     const res = Reflect.get(target, key, receiver);
 
