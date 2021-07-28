@@ -32,6 +32,7 @@ const message = {
 
 router.post('/api/clear', async ctx => {
   cp.spawnSync('rm', ['-rf', 'dist']);
+  cp.spawnSync('rm', ['-rf', 'demo.html']);
   ctx.body = { status: 0 };
 });
 
