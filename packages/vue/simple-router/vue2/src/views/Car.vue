@@ -1,5 +1,8 @@
 <template>
-  <div>this is car page</div>
+  <div>
+    <div>this is car page</div>
+    <el-button>haha</el-button>
+  </div>
 </template>
 
 <script>
