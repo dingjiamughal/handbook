@@ -1,0 +1,30 @@
+{
+  "name": "week3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"vite\"  \"node server.js\"",
+    "polling": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "^0.0.16",
+    "koa-helmet": "^6.1.0",
+    "koa-router": "^10.0.0",
+    "monaco-editor-core": "^0.26.0",
+    "prettier": "^2.3.2"
+  },
+  "devDependencies": {
+    "co-views": "^2.1.0",
+    "concurrently": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "koa-static": "^5.0.0",
+    "koa-views": "^7.0.1",
+    "vite": "^2.4.4",
+    "webpack": "^5.47.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

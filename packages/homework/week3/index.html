@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>week1 Monaco Editor</title>
+    <style>
+      #monaco,
+      #view {
+        width: 1180px;
+        height: 400px;
+        margin: 0 auto;
+        border: 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div>简陋了点😢 只支持所有代码都写在一份 html 上 ↓</div>
+    <div id="monaco"></div>
+    <br />
+    <div>
+      <button id="action">执行代码 并预览 ↓</button>
+      <span id="flag">编译状态: 未开始</span>
+    </div>
+    <br />
+    <div id="view">
+      <iframe id="iframe" width="1180" height="400" src="http://localhost:6324/" scrolling="no">
+        <p>你的浏览器不支持iframe标签</p>
+      </iframe>
+    </div>
+  </body>
+
+  <script type="module">
+    import * as monaco from 'monaco-editor-core';
+    import prettier from 'prettier/standalone';
+    import htmlParser from 'prettier/parser-html';
+
+    const inititalHtml = prettier.format(
+      `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>简易版</title>
+        </head>
+        <body></body>
+        </html>
+    `,
+      { tabWidth: 4, plugins: [htmlParser], parser: 'html' }
+    );
+    const monacoInstance = monaco.editor.create(document.getElementById('monaco'), {
+      value: inititalHtml,
+      language: 'javascript'
+    });
+
+    window.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('iframe').src = 'http://localhost:6324';
+      fetch('http://localhost:3010/api/clear', { method: 'POST' });
+    });
+
+    document.querySelector('#action').addEventListener('click', function () {
+      const code = monacoInstance.getValue();
+
+      fetch('http://localhost:3010/api/compile', {
+        method: 'POST',
+        body: code
+      });
+      // .then(res => res.json())
+      // .then(res => console.log(res));
+
+      const interval = setInterval(() => {
+        fetch('http://localhost:3010/api/process', {
+          method: 'POST'
+        })
+          .then(res => res.json())
+          .then(res => {
+            document.getElementById('flag').textContent = `编译状态: ${res.message} ${
+              res.flag ? 'http://localhost:6324/' : ''
+            }`;
+
+            if (res.flag) {
+              document.getElementById('iframe').src = 'http://localhost:6324';
+              clearInterval(interval);
+            }
+          });
+      }, 300);
+    });
+  </script>
+</html>
