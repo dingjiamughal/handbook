@@ -16,6 +16,7 @@
     </style>
   </head>
   <body>
+    <div>运行 yarn && yarn dev</div>
     <div>简陋了点😢 只支持所有代码都写在一份 html 上 ↓</div>
     <div id="monaco"></div>
     <br />
@@ -56,17 +57,21 @@
     });
 
     window.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('iframe').src = 'http://localhost:6324';
+      document.getElementById('iframe').src = '';
       fetch('http://localhost:3010/api/clear', { method: 'POST' });
     });
 
     document.querySelector('#action').addEventListener('click', function () {
       const code = monacoInstance.getValue();
+      try {
+        prettier.format(code, { tabWidth: 4, plugins: [htmlParser], parser: 'html' });
+      } catch (e) {
+        console.log(e.message);
+        alert(e.message);
+        return;
+      }
 
-      fetch('http://localhost:3010/api/compile', {
-        method: 'POST',
-        body: code
-      });
+      fetch('http://localhost:3010/api/compile', { method: 'POST', body: code });
       // .then(res => res.json())
       // .then(res => console.log(res));
 
