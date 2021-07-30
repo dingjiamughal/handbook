@@ -8,6 +8,26 @@
   </head>
   <body>
     <div id="app"></div>
+    <!-- <div id="counter">{{counter}}</div> -->
+    <div id="container"></div>
     <script type="module" src="./src/main.ts"></script>
+    <script type="module">
+      import { createApp } from 'https://cdn.bootcdn.net/ajax/libs/vue/3.2.0-beta.5/vue.esm-browser.js';
+
+      const App = {
+        data() {
+          return {
+            vhtml: '<h3>这是一段v-html</h3>',
+            count: 0
+          };
+        },
+        template: `<div>
+            <div v-html="vhtml"></div>
+            <button @click="count+=1">click {{count}}</button>
+          </div>`
+      };
+
+      const app = createApp(App).mount('#container');
+    </script>
   </body>
 </html>
