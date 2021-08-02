@@ -13,7 +13,6 @@ class KoaMini {
     const server = http.createServer(async (req, res) => {
       //   this.callback(req, res);
       const ctx = this.createContext(req, res);
-      console.log(1);
 
       //   中间件 compose
       await this.compose(this.middlewares)(ctx);
