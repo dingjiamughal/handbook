@@ -1,7 +1,11 @@
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 import App from './App.vue';
+import router from './router';
 
 Vue.config.productionTip = false;
+
+Vue.use(VueRouter);
 let app = null;
 
 if (!window.__POWERED_BY_QIANKUN__) {
@@ -12,10 +16,7 @@ if (!window.__POWERED_BY_QIANKUN__) {
   // 模拟登录后，存储用户信息到global module
   // const userInfo = { name: '我是独立运行时名字叫张三' }; // 假设登录后取到的用户信息
   // store.commit('global/setGlobalState', { user: userInfo });
-
-  app = new Vue({
-    render: h => h(App)
-  }).$mount('#app');
+  render();
 }
 
 export async function bootstrap() {
@@ -40,6 +41,7 @@ function render(props = {}) {
   const { container } = props;
 
   app = new Vue({
-    render: h => h(App)
+    render: h => h(App),
+    router
   }).$mount(container ? container.querySelector('#app') : '#app');
 }

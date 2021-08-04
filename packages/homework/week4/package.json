@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start:all": "concurrently \"npm run start:foundation\" \"npm run start:app1\" \"npm run start:app2\"",
+    "start:all": "concurrently \"npm run start:foundation\" \"npm run start:app-vue\" \"npm run start:app-react\"",
     "start:foundation": "cd foundation && npm run dev",
-    "start:app1": "cd app3 && npm run dev",
-    "start:app2": "cd app2 && npm run dev"
+    "start:app-vue": "cd app3 && npm run dev",
+    "start:app-react": "cd app2 && npm run dev"
   },
   "devDependencies": {
     "concurrently": "^6.2.0"

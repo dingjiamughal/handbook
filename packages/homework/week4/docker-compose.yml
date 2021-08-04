@@ -1,0 +1,10 @@
+version: '3'
+services:
+  qiankun-main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: qiankun-main
+    container_name: qiankun-main
+    ports:
+      - 4321:1234

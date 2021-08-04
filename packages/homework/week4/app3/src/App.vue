@@ -1,19 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>-----------</div>
+    <div>子应用</div>
+    <button @click="handleClick">文章页</button>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  methods: {
+    handleClick() {
+      this.$router.push({ name: 'article' });
+    }
   }
-}
+};
 </script>
 
 <style>

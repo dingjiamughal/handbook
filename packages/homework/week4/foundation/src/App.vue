@@ -1,18 +1,8 @@
 <template>
   <div class="layout-wrapper">
     <div class="layout-header">
-      <div class="logo">QIANKUN-EXAMPLE</div>
-      <ul class="sub-apps">
-        <li
-          v-for="item in microApps"
-          :class="{ active: item.activeRule === current }"
-          :key="item.name"
-          @click="goto(item)"
-        >
-          {{ item.name }}
-        </li>
-      </ul>
-      <div class="userinfo">主应用的state：{{ JSON.stringify(user) }}</div>
+      <div>基座</div>
+      <button @click="goto('/sub-vue')">sub vue</button>
     </div>
     <div id="subapp-viewport"></div>
   </div>
@@ -20,21 +10,16 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import microApps from './micro-app';
-import store from './store';
 
 export default defineComponent({
   name: 'App',
   components: {},
   setup() {
-    const goto = item => {
-      history.pushState(null, item.activeRule, item.activeRule);
-      // this.current = item.name
+    const goto = path => {
+      history.pushState(null, path, path);
     };
 
     return {
-      microApps,
-      user: computed(() => store.getGlobalState('user')),
       goto
     };
   }

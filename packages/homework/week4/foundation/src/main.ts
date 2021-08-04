@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
-import microApps from './micro-app';
 import App from './App.vue';
 
 const instance = createApp(App).mount('#app');
@@ -14,12 +13,17 @@ const instance = createApp(App).mount('#app');
 // }
 
 // 给子应用配置加上loader方法
-const apps = microApps.map(item => {
-  return {
-    ...item
-    // loader
-  };
-});
+const apps = [
+  {
+    name: 'sub-vue',
+    entry: '//localhost:6324/',
+    activeRule: '/sub-vue',
+    container: '#subapp-viewport', // 子应用挂载的div
+    props: {
+      routerBase: '/sub-vue' // 下发基础路由
+    }
+  }
+];
 
 registerMicroApps(apps, {
   beforeLoad: app => {
