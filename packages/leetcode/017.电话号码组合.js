@@ -9,43 +9,43 @@
  */
 
 const keyboardMap = {
-    2: "abc",
-    3: "def",
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz",
+    2: 'abc',
+    3: 'def',
+    4: 'ghi',
+    5: 'jkl',
+    6: 'mno',
+    7: 'pqrs',
+    8: 'tuv',
+    9: 'wxyz',
 };
 
 function letterCombinations(digits) {
     return digits
-        .split("")
+        .split('')
         .reduce(
             (memo, next) => {
-                const mergedArr = keyboardMap[next].split("");
+                const mergedArr = keyboardMap[next].split('');
                 const temp = [];
-                memo.forEach((m) => {
-                    mergedArr.forEach((n) => {
+                memo.forEach(m => {
+                    mergedArr.forEach(n => {
                         temp.push(m + n);
                     });
                 });
 
                 return temp;
             },
-            [""]
+            ['']
         )
         .filter(Boolean);
 }
 
 function letterCombinations2(digits) {
-    let alphaArrs = digits.split("").map((num) => keyboardMap[num].split(""));
+    let alphaArrs = digits.split('').map(num => keyboardMap[num].split(''));
     while (alphaArrs.length > 1) {
         const temp = [];
 
-        alphaArrs[0].forEach((m) => {
-            alphaArrs[1].forEach((n) => {
+        alphaArrs[0].forEach(m => {
+            alphaArrs[1].forEach(n => {
                 temp.push(m + n);
             });
         });
@@ -56,4 +56,4 @@ function letterCombinations2(digits) {
     return alphaArrs[0] || [];
 }
 
-console.log(letterCombinations2(""));
+console.log(letterCombinations2(''));
