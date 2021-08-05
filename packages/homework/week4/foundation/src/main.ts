@@ -28,24 +28,24 @@ const apps = [
 registerMicroApps(apps, {
   beforeLoad: app => {
     console.log('before load app.name====>>>>>', app.name);
-    // return Promise.resolve();
+    return Promise.resolve();
   },
   beforeMount: [
     app => {
       console.log('[LifeCycle] before mount %c%s', 'color: green;', app.name);
-      //   return Promise.resolve();
+      return Promise.resolve();
     }
   ],
   afterMount: [
     app => {
       console.log('[LifeCycle] after mount %c%s', 'color: green;', app.name);
-      //   return Promise.resolve();
+      return Promise.resolve();
     }
   ],
   afterUnmount: [
     app => {
       console.log('[LifeCycle] after unmount %c%s', 'color: green;', app.name);
-      //   return Promise.resolve();
+      return Promise.resolve();
     }
   ]
 });

@@ -7,4 +7,5 @@ services:
     image: qiankun-main
     container_name: qiankun-main
     ports:
-      - 4321:1234
+      - 8188:8088
+      - 6326:6324
