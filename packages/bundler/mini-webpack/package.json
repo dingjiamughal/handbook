@@ -13,5 +13,9 @@
     "nodemon": "^2.0.12",
     "webpack": "^5.47.1",
     "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0"
   }
 }
