@@ -11,16 +11,16 @@
 
 ### 手写
 
-- [ ] call / apply / bind
-- [ ] new
+- [x] call / apply / bind
+- [x] new
 - [ ] promise
-- [ ] instanceof
-- [ ] 节流 / 防抖
-- [ ] event-loop
+- [x] instanceof
+- [x] 节流 / 防抖
+- [x] event-loop
 - [ ] 封装 fetch
-- [ ] deepClone
+- [x] deepClone
 - [ ] memo 函数
-- [ ] eventEmitter
+- [x] eventEmitter
 
 ### 源码、原理
 
@@ -46,6 +46,9 @@
 第 K 大的元素
 电话号码组合
 卡牌分组
+种花问题
+格雷编码
+正则表达式匹配
 ```
 
 ### 其他使用
