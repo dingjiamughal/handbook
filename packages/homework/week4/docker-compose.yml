@@ -2,10 +2,17 @@ version: '3'
 services:
   qiankun-main:
     build:
-      context: .
+      context: ./foundation
       dockerfile: Dockerfile
     image: qiankun-main
     container_name: qiankun-main
     ports:
       - '8089:8088'
+  qiankun-sub:
+    build:
+      context: ./app3
+      dockerfile: Dockerfile
+    image: qiankun-sub
+    container_name: qiankun-sub
+    ports:
       - '6326:6324'
