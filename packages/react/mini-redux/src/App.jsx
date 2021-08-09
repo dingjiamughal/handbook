@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import store from './store';
+import { Provider } from 'react-redux';
+import Test from './Test';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,6 +26,11 @@ function App() {
         async add
       </button>
       <div>{store.getState()}</div>
+
+      <div>--------------- react redux ----------------</div>
+      <Provider store={store}>
+        <Test msg="Hello" />
+      </Provider>
     </div>
   );
 }

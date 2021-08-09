@@ -1,4 +1,4 @@
-const { name } = require('../package.json');
+const { name } = require('./package.json');
 
 module.exports = {
   chainWebpack: config => config.resolve.symlinks(false),
