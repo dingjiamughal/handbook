@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import store from './store';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
+import { Provider } from './react-redux/Provider';
 import Test from './Test';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
       </button>
       <div>{store.getState()}</div>
 
-      <div>--------------- react redux ----------------</div>
+      <div>--------------- mini react redux ----------------</div>
       <Provider store={store}>
         <Test msg="Hello" />
       </Provider>

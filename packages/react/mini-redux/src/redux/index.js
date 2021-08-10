@@ -51,3 +51,10 @@ export function applyMiddleware(...middlewares) {
       return { ...store, dispatch };
     };
 }
+
+export function bindActionCreators(creators, dispatch) {
+  return Object.keys(creators).reduce((memo, next) => {
+    memo[next] = (...args) => dispatch(creators[next](...args));
+    return memo;
+  }, {});
+}
