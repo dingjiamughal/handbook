@@ -67,6 +67,8 @@ function useReducer(reducer, initialState) {
   return [state, dispatch];
 }
 
+// --------------------------------- Test ---------------------------------
+
 const App: React.FC = () => {
   const [count, setCount] = useState(0);
   const [name, setName] = useState('dingjia');
