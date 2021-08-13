@@ -30,9 +30,7 @@ export const connect = (mapStatetoProps, mapDispatchtoProps) => WrapperComponent
       // {add: () => ({type: 'ADD'})}
       if (typeof mapDispatchtoProps === 'object') {
         dispatchProps = bindActionCreators(mapDispatchtoProps, dispatch);
-        console.log(dispatchProps);
       }
-
       //   (dispatch, ownProps) => {}
       else if (typeof mapDispatchtoProps === 'function') {
         dispatchProps = mapDispatchtoProps(dispatch, this.props);

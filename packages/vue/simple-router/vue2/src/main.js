@@ -11,7 +11,6 @@ Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
-console.log(ElementUI);
 // Vue.use(Button)
 
 const router = new VueRouter({

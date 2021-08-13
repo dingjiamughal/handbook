@@ -2,6 +2,7 @@ let _Vue = null;
 
 export default class VueRouter {
   constructor(options) {
+    console.log(3);
     this.options = options;
     this.routeMap = {};
     this.data = _Vue.observable({
@@ -9,6 +10,7 @@ export default class VueRouter {
     });
   }
   static install(Vue) {
+    console.log(1);
     // 判断当前插件是否已被安装
     if (VueRouter.install.installed) {
       return;
@@ -20,6 +22,7 @@ export default class VueRouter {
     // 把创建Vue实例传入的router对象注入到Vue实例上
     _Vue.mixin({
       beforeCreate() {
+        console.log(2, this.$options);
         if (this.$options.router) {
           _Vue.prototype.$router = this.$options.router;
 

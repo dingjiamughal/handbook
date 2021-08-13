@@ -1,3 +1,14 @@
+### createServer
+
+每一次请求都会进来执行一次，中间件
+
+```js
+const server = http.createServer(async (req, res) => {
+  // 中间件 compose ...
+  res.end(ctx.body);
+});
+```
+
 ### 洋葱圈模型
 
 ```js
@@ -54,4 +65,25 @@ function compose(middlewares) {
 middlewares[i](ctx, function next() {
   return dispatch[i + 1];
 });
+```
+
+### koa-router 原理
+
+有了 koa 的 next 规则，中间件逻辑最后执行 koa middleware 的 next<br>
+koa-router 就是筛选出 method + path 匹配的执行回调函数<br>
+套模板即可
+
+```js
+// 使用方法
+router.get('/', async (ctx, next) => ctx.body = 'bbb');
+
+// routes方法中 筛选出 methods 和 path 相同的
+app.use(router.routes());
+
+// 形式是 (ctx, next) => {}
+routes() {
+  return (ctx, next) => {
+    middleware(ctx, next);
+  }
+}
 ```

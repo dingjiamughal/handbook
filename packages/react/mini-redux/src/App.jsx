@@ -3,6 +3,8 @@ import store from './store';
 // import { Provider } from 'react-redux';
 import { Provider } from './react-redux/Provider';
 import Test from './Test';
+import BB from './BB';
+import tt from './tt';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,8 +28,9 @@ function App() {
       >
         async add
       </button>
-      <div>{store.getState()}</div>
-
+      <div onClick={() => console.log(tt.getNum())}>{store.getState()}</div>
+      <div onClick={() => tt.add()}>{count}</div>
+      <BB />
       <div>--------------- mini react redux ----------------</div>
       <Provider store={store}>
         <Test msg="Hello" />
