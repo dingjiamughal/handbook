@@ -15,8 +15,6 @@ var rob = function (nums) {
     }
 
     const dp = [0, nums[0]]; // 存放方案最大值
-    const a = 0;
-    const b = nums[0];
 
     for (let i = 2; i <= nums.length; i++) {
         dp[i] = Math.max(dp[i - 2] + nums[i - 1], dp[i - 1]);
