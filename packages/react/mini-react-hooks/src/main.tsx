@@ -14,6 +14,7 @@ function createSetter(index: number) {
 
 function useState(initialState: any) {
   state[stateIndex] = state[stateIndex] ? state[stateIndex] : initialState;
+
   setters.push(createSetter(stateIndex));
 
   const stateHook = [state[stateIndex], setters[stateIndex]];
@@ -22,16 +23,11 @@ function useState(initialState: any) {
   return stateHook;
 }
 
-function render() {
-  stateIndex = 0;
-  effectIndex = 0;
-  ReactDom.render(<App />, document.getElementById('root'));
-}
-
 // useEffect
-let prevDepsArray = [];
+let prevDepsArray: any[][] = [];
 let effectIndex = 0;
-function useEffect(callback, deps) {
+
+function useEffect(callback: () => void, deps: any[]) {
   if (Object.prototype.toString.call(callback) !== '[object Function]') {
     throw new Error('callback is not a function');
   }
@@ -57,34 +53,66 @@ function useEffect(callback, deps) {
 }
 
 // useReducer
-function useReducer(reducer, initialState) {
+function useReducer(reducer: (arg0: any, arg1: any) => any, initialState: any) {
   const [state, setState] = useState(initialState);
 
-  function dispatch(action) {
+  function dispatch(action: any) {
     const newState = reducer(state, action);
     setState(newState);
   }
   return [state, dispatch];
 }
 
-// --------------------------------- Test ---------------------------------
+// render
+function render() {
+  stateIndex = 0;
+  effectIndex = 0;
+  ReactDom.render(<App />, document.getElementById('root'));
+}
 
+// --------------------------------- App ---------------------------------
+
+const createReducer = (state: any, action: { type: string; payload: string }) => {
+  switch (action.type) {
+    case 'CHANGE_NAME':
+      return { ...state, name: action.payload };
+    case 'CHANGE_SEX':
+      return { ...state, sex: action.payload };
+    default:
+      return state;
+  }
+};
 const App: React.FC = () => {
   const [count, setCount] = useState(0);
   const [name, setName] = useState('dingjia');
 
+  const [many, dispatch] = useReducer(createReducer, {
+    name: 'jiading',
+    sex: 'male'
+  });
+
+  useEffect(() => {
+    // setName('dingjia' + count);
+    console.log(count);
+  }, [count]);
+
   return (
     <>
       <div>
-        <span onClick={() => setCount(count + 1)}>setCount</span>
+        <button onClick={() => setCount(count + 1)}>setCount</button>
         <span>{count}</span>
       </div>
       <div>
-        <span onClick={() => setName('dingjia1')}>setName</span>
+        <button onClick={() => setName('dingjia1')}>setName</button>
         <span>{name}</span>
       </div>
+      <div>
+        {many.name} {many.sex}
+      </div>
+      <button onClick={() => dispatch({ type: 'CHANGE_NAME', payload: 'dddd' })}>change name</button>
+      <button onClick={() => dispatch({ type: 'CHANGE_SEX', payload: 'XXX' })}>change sex</button>
     </>
   );
 };
 
-export default App;
+render();
