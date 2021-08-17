@@ -1,3 +1,4 @@
+// i + 1 和 i 比较，前面大于后面，交换位置
 function bubble(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         for (let j = 0; j < i; j++) {
