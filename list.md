@@ -26,7 +26,7 @@
 
 - [ ] vue2.x
 - [ ] vue3.x
-- [ ] vue-router-next
+- [x] vue-router
 - [ ] vuex4
 - [ ] vdom(snabbdom)
 - [ ] react-hook
@@ -35,7 +35,7 @@
 - [ ] fiber
 - [ ] webpack
 - [x] koa、koa-router
-- [ ] 常用 nodejs 库（nodemon、pm2、koa-compose）
+- [x] 常用 nodejs 库（nodemon、pm2、koa-compose）
 
 ### 算法（70-80 题）
 
