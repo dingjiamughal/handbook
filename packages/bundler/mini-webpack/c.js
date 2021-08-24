@@ -1,1 +1,2 @@
-export const c = 'ccccc';
+export const c = '我是 c.js';
+console.log(c);

@@ -4,12 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/webpack-run.js",
+    "dev": "node src/webpack-run.js",
     "build": "webpack"
   },
   "devDependencies": {
     "@babel/parser": "^7.14.8",
     "@babel/traverse": "^7.14.8",
+    "loader-utils": "^2.0.0",
     "nodemon": "^2.0.12",
     "webpack": "^5.47.1",
     "webpack-cli": "^4.7.2"
