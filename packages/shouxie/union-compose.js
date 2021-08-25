@@ -1,5 +1,5 @@
 // 普通的 compose 函数
-// const compose = (...[first, ...rest]) => (...args) => rest.reduce((memo, next) => next(memo), first(...args)); // prettier-ignore
+const compose = (...[first, ...rest]) => (...args) => rest.reduce((memo, next) => next(memo), first(...args)); // prettier-ignore
 
 // const add = (a, b) => a + b;
 // const square = a => a * a;
