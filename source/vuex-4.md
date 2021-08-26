@@ -9,6 +9,8 @@ const store = useStore();
 
 ### createStore 和 useStore 通信
 
+使用 Vue.provide 和 Vue.inject
+
 和 react-redux 相似也是通过 context 形式传
 
 ```js

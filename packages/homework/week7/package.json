@@ -7,8 +7,13 @@
     "start": "node src/app.js"
   },
   "dependencies": {
+    "elasticsearch": "^16.7.2",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
-    "koa-helmet": "^6.1.0"
+    "koa-helmet": "^6.1.0",
+    "koa-router": "^10.1.1",
+    "mongoose": "^6.0.1",
+    "mysql2": "^2.3.0",
+    "redis": "^3.1.2"
   }
 }
