@@ -31,12 +31,13 @@ export const connect = (mapStatetoProps, mapDispatchtoProps) => WrapperComponent
       if (typeof mapDispatchtoProps === 'object') {
         dispatchProps = bindActionCreators(mapDispatchtoProps, dispatch);
       }
-      //   (dispatch, ownProps) => {}
+      // (dispatch, ownProps) => {}
       else if (typeof mapDispatchtoProps === 'function') {
         dispatchProps = mapDispatchtoProps(dispatch, this.props);
       } else {
         dispatchProps = { dispatch };
       }
+
       this.setState({
         props: {
           ...stateProps,

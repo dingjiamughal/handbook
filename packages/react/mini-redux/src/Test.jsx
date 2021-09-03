@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from './react-redux/Provider';
 
 const Test = props => {
-  console.log(props);
+  console.log('props:', props);
   return (
     <div>
       <button onClick={() => props.add()}>{props.store}</button>
@@ -24,9 +24,13 @@ const mapDispatchtoProps = dispatch => {
     },
     dispatch
   );
+
+  console.log('xxx', res);
   return { dispatch, ...res };
 };
 
-export default connect(mapStatetoProps, {
-  add: () => ({ type: 'ADD' })
-})(Test);
+// export default connect(mapStatetoProps, {
+//   add: () => ({ type: 'ADD' })
+// })(Test);
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(Test);

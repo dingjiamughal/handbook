@@ -1,5 +1,4 @@
 function curry(fn, ...args) {
-    console.log(args);
     if (fn.length <= args.length) {
         return fn(...args);
     }
