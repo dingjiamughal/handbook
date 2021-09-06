@@ -35,4 +35,17 @@ function bfs(tree) {
     }
 }
 
-console.log(bfs(tree));
+// console.log(bfs(tree));
+
+var arr = [1, 2, [3, [4]]];
+function flatten(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i];
+        console.log(i, item);
+        if (item instanceof Array) {
+            arr.splice(i, 1, ...item);
+        }
+    }
+}
+flatten(arr);
+console.log(arr);

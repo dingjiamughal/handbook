@@ -10,7 +10,6 @@ export default class VueRouter {
     });
   }
   static install(Vue) {
-    console.log(1);
     // 判断当前插件是否已被安装
     if (VueRouter.install.installed) {
       return;

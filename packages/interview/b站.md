@@ -1,0 +1,17 @@
+- es6 新特性
+- css 动画 轮播实现
+- 原型链的理解
+- 宏任务和微任务
+- promise 原理
+- 常用的设计模式
+- 实现一个 event emitter
+- 箭头函数，如何改变 this
+- 用过哪些构建工具，区别是
+- webpack plugin 执行过程
+- webpack 常见 loader
+- 写过哪些 webpack loader plugin
+- hmr 原理
+- diff 算法原理
+- vue react 如何做 css，css module 原理是什么
+- vue 原理
+- react 父组件 setState 会触发子组件哪些钩子

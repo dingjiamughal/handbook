@@ -1,0 +1,17 @@
+{
+  "name": "webpack-hmr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "socker.io": "^0.0.0-alpha-beta",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0"
+  }
+}
