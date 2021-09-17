@@ -166,3 +166,15 @@ setter 中 notify
    mountComponent 中做的事情按照顺序大致：执行 beforeMount、new Watch(updateComponent)、定义了 beforeUpdate 在 sub.update 之前会调用他、执行 mounted
    new Watcher(vm, updateComponent) updateComponent 就是 vm_update(vm.render) diff + vnode 的过程
    Watcher 内部会把 mountComponent 的情况。设置 vm.\_watcher = this 方便自己用
+
+#### 监控
+
+1. 错误监控
+   window.onerror
+   监听资源加载错误： window.addEventListener('error')
+   promise: window.addEventListener('unhandledrejection')
+   http 判断状态码
+   跨域 crossOriginScriptErrorMonitor
+
+2. 性能监控
+   window.performance
