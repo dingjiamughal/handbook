@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.8"
+    "@babel/core": "^7.14.8",
+    "@vue/compiler-sfc": "^3.2.20"
   }
 }
