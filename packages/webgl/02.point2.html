@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>动态绘制点</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+            #canvas {
+                background-color: antiquewhite;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script type="shader-source" id="vertexShader">
+            // 浮点数设置为中等精度
+            precision mediump float;
+            // 接收 JavaScript 传递过来的点的坐标（X, Y）
+            attribute vec2 a_Position;
+            attribute float a_PointSize;
+            // 接收canvas的尺寸。
+            attribute vec2 a_Screen_Size;
+            void main(){
+                // 将 canvas 的坐标值 转换为 [-1.0, 1.0]的范围。
+                vec2 position = (a_Position / a_Screen_Size) * 2.0 - 1.0;
+                // canvas的 Y 轴坐标方向和 设备坐标系的相反。
+                position = position * vec2(1.0, -1.0);
+                // 最终的顶点坐标。
+                gl_Position = vec4(position, 0.0, 1.0);
+                // 点的大小。
+                gl_PointSize = a_PointSize;
+            }
+        </script>
+        <script type="shader-source" id="fragmentShader">
+            // 浮点数设置为中等精度
+            precision mediump float;
+            // 全局变量，用来接收 JavaScript传递过来的颜色。
+            uniform vec4 u_Color;
+            void main() {
+            	// 将颜色处理成 GLSL 允许的范围[0， 1]。
+            	vec4 color = u_Color / vec4(255, 255, 255, 1);
+            	// 点的最终颜色。
+            	gl_FragColor = color;
+            }
+        </script>
+        <script type="module">
+            import {initShaders, randomColor} from './utils.js';
+
+            //获取canvas
+            const canvas = document.querySelector('#canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            //获取绘图上下文
+            const gl = canvas.getContext('webgl');
+            const vsSource = document.querySelector('#vertexShader').innerText;
+            const fsSource = document.querySelector('#fragmentShader').innerText;
+            //初始化着色器
+            initShaders(gl, vsSource, fsSource);
+
+            //获取顶点着色器中的变量a_Position的位置。
+            const a_Position = gl.getAttribLocation(gl.program, 'a_Position');
+            //获取顶点着色器中的变量a_Screen_Size的位置。
+            const a_Screen_Size = gl.getAttribLocation(gl.program, 'a_Screen_Size');
+            const a_PointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
+
+            //获取片元着色器中的变量u_Color的位置。
+            const u_Color = gl.getUniformLocation(gl.program, 'u_Color');
+            //向顶点着色器的 a_Screen_Size 传递 canvas 尺寸信息。
+            gl.vertexAttrib2f(a_Screen_Size, canvas.width, canvas.height);
+
+            //存储区顶点信息的容器
+            const points = [];
+
+            canvas.addEventListener('click', e => {
+                const x = e.pageX;
+                const y = e.pageY;
+                const color = randomColor();
+                //存储新的点的坐标和颜色。
+                points.push({x: x, y: y, color: color});
+                render(gl);
+            });
+            //绘制函数
+            function render(gl) {
+                //清除屏幕
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                points.forEach(point => {
+                    const {color, x, y} = point;
+
+                    //向片元着色器传递颜色信息
+                    gl.uniform4f(u_Color, color.r, color.g, color.b, color.a);
+                    //向顶点着色器传递坐标信息。
+                    gl.vertexAttrib2f(a_Position, x, y);
+                    gl.vertexAttrib1f(a_PointSize, 20.0);
+                    //绘制点。
+                    gl.drawArrays(gl.POINTS, 0, 1);
+                });
+            }
+            //设置屏幕清除颜色为黑色。
+            gl.clearColor(0, 0, 0, 1.0);
+            //绘制
+            render(gl);
+        </script>
+    </body>
+</html>
