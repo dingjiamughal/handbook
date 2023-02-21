@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <meta name="importmap-type" content="systemjs-importmap" />
+
+        <script type="systemjs-importmap">
+            {
+                "imports": {
+                    "vue": "http://tianzhi-fe.bcc-szwg.baidu.com:8200/vue/2.6.12/dist/vue.runtime.min.js",
+                    "@baidu/ergo-ui-vue2": "http://tianzhi-fe.bcc-szwg.baidu.com:8200/@baidu/ergo-ui-vue2/0.0.39/dist/index.js",
+                    "@vue/composition-api": "http://tianzhi-fe.bcc-szwg.baidu.com:8200/@vue/composition-api/1.0.0-rc.7/dist/vue-composition-api.js",
+                    "vue-router": "http://tianzhi-fe.bcc-szwg.baidu.com:8200/vue-router/3.4.9/dist/vue-router.min.js",
+                    "subapp1": "/app.js"
+                }
+            }
+        </script>
+        <!-- <script src="http://tianzhi-fe.bcc-szwg.baidu.com:8200/systemjs/6.3.2/dist/system.min.js"></script>
+        <script src="http://tianzhi-fe.bcc-szwg.baidu.com:8200/systemjs/6.3.2/dist/extras/amd.min.js"></script>
+        <script src="http://tianzhi-fe.bcc-szwg.baidu.com:8200/systemjs/6.3.2/dist/extras/named-exports.js"></script>
+        <script src="http://tianzhi-fe.bcc-szwg.baidu.com:8200/systemjs/6.3.2/dist/extras/named-register.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.2/system.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.2/extras/amd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.2/extras/named-exports.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.10.2/extras/named-register.min.js"></script>
+        <title><%= htmlWebpackPlugin.options.title %></title>
+    </head>
+    <body>
+        <noscript>
+            <strong
+                >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript
+                enabled. Please enable it to continue.</strong
+            >
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+    </body>
+</html>
